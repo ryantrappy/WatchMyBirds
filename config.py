@@ -974,7 +974,7 @@ def _coerce_config_types(config: dict[str, Any]) -> None:
 
     # SPECIES_COMMON_NAME_LOCALE: uppercase, only DE or NO
     locale_val = str(config.get("SPECIES_COMMON_NAME_LOCALE", "DE")).strip().upper()
-    if locale_val not in ("DE", "NO"):
+    if locale_val not in ("DE", "NO", "EN"):
         locale_val = "DE"
     config["SPECIES_COMMON_NAME_LOCALE"] = locale_val
 
@@ -1399,7 +1399,7 @@ def _validate_value(key: str, value: Any) -> tuple[bool, Any]:
     if key == "SPECIES_COMMON_NAME_LOCALE":
         if isinstance(value, str):
             normalized = value.strip().upper()
-            if normalized in ("DE", "NO"):
+            if normalized in ("DE", "NO", "EN"):
                 return True, normalized
         return False, None
 
